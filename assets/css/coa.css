@@ -1,0 +1,296 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    color: #343a40;
+}
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: white;
+}
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+.form-container h2 {
+    color: #343a40;
+    margin-top: 0;
+}
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-container label {
+    font-weight: bold;
+    color: #495057;
+}
+.form-container input[type="text"], .form-container select {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 95%; /* Decrease the width of input fields slightly from the right */
+    margin-right: auto;
+}
+.form-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+.form-container button:hover {
+    background-color: #0056b3;
+}
+.list-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+.list-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.list-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+.list-container ul {
+    padding-left: 20px;
+}
+.list-container ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-container ul li:last-child {
+    border-bottom: none;
+}
+.list-container button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+.list-container button:hover {
+    background-color: #c82333;
+}
+.list-container .edit-button {
+    background-color: #28a745;
+    margin-right: 5px;
+}
+.list-container .edit-button:hover {
+    background-color: #218838;
+}
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.modal-buttons button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.btn-confirm-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #c82333;
+}
+
+#deleteConfirmationText {
+    margin: 20px 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Search Bar Styles */
+.list-container .search-container {
+    position: relative;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    width: 100%;
+}
+
+.list-container .search-input-group {
+    position: relative;
+    width: 180px;
+    margin-right: 35px;
+}
+
+.list-container .search-buttons {
+    display: flex;
+    gap: 6px;
+    margin-left: 25px;
+}
+
+.list-container .search-input {
+    width: 100%;
+    height: 30px;
+    padding: 4px 15px 4px 35px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #495057;
+    transition: all 0.2s ease-in-out;
+    background-color: #fff;
+}
+
+.list-container .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* Search Button */
+.list-container .btn-search {
+    height: 30px;
+    padding: 0 12px;
+    background-color: #0d6efd;
+    color: white;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    min-width: 75px;
+    justify-content: center;
+}
+
+.list-container .btn-search:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Cancel Button */
+.list-container .btn-cancel-search {
+    height: 30px;
+    padding: 0 12px;
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    min-width: 75px;
+    justify-content: center;
+}
+
+.list-container .btn-cancel-search:hover {
+    background-color: #5c636a;
+    border-color: #565e64;
+}
+
+.list-container .btn-search i, .list-container .btn-cancel-search i {
+    font-size: 12px;
+}
