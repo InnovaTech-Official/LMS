@@ -1,7 +1,8 @@
 <?php
-require_once "../../../controllers/setup/loansetup/index.php";
-require_once "../../../controllers/setup/loansetup/index.php";
+require_once "../../../controllers/setup/loansetup/edit.php";
+$isEdit = isset($loan['id']);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,52 +20,47 @@ require_once "../../../controllers/setup/loansetup/index.php";
 
         <a href="../../../views/setup/loansetup/showLoan.php">Show loan Products</a>
 
-        <h1 class="main-heading">Loan Product</h1>
+        <h1 class="main-heading">Update Loan Product</h1>
 
-        <form action="../../../controllers/setup/loansetup/index.php" method="post">
+        <form action="../../../controllers/setup/loansetup/update.php" method="post">
+
+            <?php if ($isEdit): ?>
+                <input type="hidden" name="id" value="<?= htmlspecialchars($loan['id']) ?>">
+            <?php endif; ?>
 
             <div class="card">
                 <h2 class="section-heading">Required Fields</h2>
                 <div class="form-group">
                     <label for="loanProductName">Loan Product Name</label>
-                    <input type="text" id="loanProductName" name="loanProductName">
+                    <input type="text" id="loanProductName" name="loanProductName" value="<?= htmlspecialchars($loan['loan_product_name'] ?? '') ?>">
                 </div>
+
                 <div class="form-group">
                     <label for="accessToBranch">Access to Branch</label>
                     <select id="accessToBranch" name="accessToBranch">
                         <option value="">Select Branch</option>
-                        <option value="branchA">Branch A</option>
-                        <option value="branchB">Branch B</option>
-                        <option value="branchC">Branch C</option>
+                        <?php foreach (['branchA', 'branchB', 'branchC'] as $branch): ?>
+                            <option value="<?= $branch ?>" <?= ($loan['access_to_branch'] ?? '') === $branch ? 'selected' : '' ?>>
+                                <?= ucfirst($branch) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
 
             <div class="card">
-                <h2 class="section-heading">Advanced Settings (Optional)</h2>
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="enableParameters" name="enableParameters">
-                    <label for="enableParameters">Enable below parameters</label>
-                </div>
-                <div id="advancedParameters" style="display: none;">
-                    <p class="placeholder-text">Additional advanced parameters will appear here when enabled.</p>
-                </div>
-            </div>
-
-
-            <div class="card">
                 <h2 class="section-heading">Principal Amount</h2>
                 <div class="form-group">
                     <label for="minPrincipalAmount">Minimum Principal Amount</label>
-                    <input type="text" id="minPrincipalAmount" name="minPrincipalAmount" placeholder="Minimum Amount">
+                    <input type="text" id="minPrincipalAmount" name="minPrincipalAmount" value="<?= htmlspecialchars($loan['min_principal_amount'] ?? '') ?>">
                 </div>
                 <div class="form-group">
                     <label for="defaultPrincipalAmount">Default Principal Amount</label>
-                    <input type="text" id="defaultPrincipalAmount" name="defaultPrincipalAmount" placeholder="Default Amount">
+                    <input type="text" id="defaultPrincipalAmount" name="defaultPrincipalAmount" value="<?= htmlspecialchars($loan['default_principal_amount'] ?? '') ?>">
                 </div>
                 <div class="form-group">
                     <label for="maxPrincipalAmount">Maximum Principal Amount</label>
-                    <input type="text" id="maxPrincipalAmount" name="maxPrincipalAmount" placeholder="Maximum Amount">
+                    <input type="text" id="maxPrincipalAmount" name="maxPrincipalAmount" value="<?= htmlspecialchars($loan['max_principal_amount'] ?? '') ?>">
                 </div>
             </div>
 
@@ -73,39 +69,28 @@ require_once "../../../controllers/setup/loansetup/index.php";
                 <div class="form-group">
                     <label for="interestMethod">Interest Method</label>
                     <select id="interestMethod" name="interestMethod">
-                        <option value="">Select Method</option>
-                        <option value="flat">Flat Rate</option>
-                        <option value="reducing">Reducing Balance</option>
-                        <option value="amortized">Amortized</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Interest Type</label>
-                    <div class="radio-group">
-                        <input type="radio" id="interestPercentage" name="interestType" value="percentage" checked>
-                        <label for="interestPercentage">I want Interest to be percentage % based</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="loanInterestPeriod">Loan Interest Period</label>
-                    <select id="loanInterestPeriod" name="loanInterestPeriod">
-                        <option value="">Select Period</option>
-                        <option value="daily">Daily</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="annually">Annually</option>
+                        <?php foreach (['flat', 'reducing', 'amortized'] as $method): ?>
+                            <option value="<?= $method ?>" <?= ($loan['interest_method'] ?? '') === $method ? 'selected' : '' ?>>
+                                <?= ucfirst($method) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="loanInterest">Loan Interest</label>
-                    <div class="input-with-text">
-                        <input type="text" id="loanInterest" name="loanInterest" placeholder="Enter Interest Rate">
-                        <span class="unit-text">Per Month</span>
-                    </div>
+                    <input type="text" id="loanInterest" name="loanInterest" value="<?= htmlspecialchars($loan['loan_interest'] ?? '') ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="loanInterestPeriod">Loan Interest Period</label>
+                    <select id="loanInterestPeriod" name="loanInterestPeriod">
+                        <?php foreach (['daily', 'weekly', 'monthly', 'quarterly', 'annually'] as $period): ?>
+                            <option value="<?= $period ?>" <?= ($loan['loan_interest_period'] ?? '') === $period ? 'selected' : '' ?>>
+                                <?= ucfirst($period) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
 
@@ -114,19 +99,17 @@ require_once "../../../controllers/setup/loansetup/index.php";
                 <div class="form-group">
                     <label for="loanDurationPeriod">Loan Duration Period</label>
                     <select id="loanDurationPeriod" name="loanDurationPeriod">
-                        <option value="">Select Period</option>
-                        <option value="days">Days</option>
-                        <option value="weeks">Weeks</option>
-                        <option value="months">Months</option>
-                        <option value="years">Years</option>
+                        <?php foreach (['days', 'weeks', 'months', 'years'] as $period): ?>
+                            <option value="<?= $period ?>" <?= ($loan['loan_duration_period'] ?? '') === $period ? 'selected' : '' ?>>
+                                <?= ucfirst($period) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="loanDuration">Loan Duration</label>
-                    <div class="input-with-text">
-                        <input type="text" id="loanDuration" name="loanDuration" placeholder="Enter Duration">
-                        <span class="unit-text">per month</span>
-                    </div>
+                    <input type="text" id="loanDuration" name="loanDuration" value="<?= htmlspecialchars($loan['loan_duration'] ?? '') ?>">
                 </div>
             </div>
 
@@ -134,25 +117,32 @@ require_once "../../../controllers/setup/loansetup/index.php";
                 <h2 class="section-heading">Repayments</h2>
                 <div class="form-group">
                     <label>Repayment Frequency</label>
-                    <div class="checkbox-list">
-                        <div class="checkbox-group"> <input type="checkbox" id="repaymentDaily" name="repaymentFrequency[]" value="daily"> <label for="repaymentDaily">Daily</label>
+                    <?php
+                    $freqs = ['daily', 'weekly', 'biweekly', 'monthly'];
+                    foreach ($freqs as $f): ?>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="repayment<?= ucfirst($f) ?>" name="repaymentFrequency[]" value="<?= $f;
+                                                                                                                        $repaymentFrequencies = isset($loan['repayment_frequency'])
+                                                                                                                            ? explode(',', $loan['repayment_frequency'])
+                                                                                                                            : [];
+                                                                                                                        ?>"
+                                <?= in_array($f, $repaymentFrequencies) ? 'checked' : '' ?>>
+                            <label for="repayment<?= ucfirst($f) ?>"><?= ucfirst($f) ?></label>
+
                         </div>
-                        <div class="checkbox-group"> <input type="checkbox" id="repaymentWeekly" name="repaymentFrequency[]" value="weekly"> <label for="repaymentWeekly">Weekly</label>
-                        </div>
-                        <div class="checkbox-group"> <input type="checkbox" id="repaymentBiweekly" name="repaymentFrequency[]" value="biweekly"> <label for="repaymentBiweekly">Biweekly</label>
-                        </div>
-                        <div class="checkbox-group"> <input type="checkbox" id="repaymentMonthly" name="repaymentFrequency[]" value="monthly"> <label for="repaymentMonthly">Monthly</label>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="numRepayments">Number of Repayments</label>
-                    <div class="number-input-group">
-                        <button type="button" class="number-btn decrement-btn">-</button>
-                        <input type="number" id="numRepayments" name="numRepayments" value="0" min="0">
-                        <button type="button" class="number-btn increment-btn">+</button>
+                    <div class="form-group">
+                        <label for="numRepayments">Number of Repayments</label>
+                        <div class="number-input-group">
+                            <button type="button" class="number-btn decrement-btn">-</button>
+                            <input type="number" id="numRepayments" name="numRepayments" value="<?= htmlspecialchars($loan['num_repayments'] ?? 0) ?>" min="0">
+                            <button type="button" class="number-btn increment-btn">+</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -163,11 +153,17 @@ require_once "../../../controllers/setup/loansetup/index.php";
                 <div class="repayment-order-controls">
                     <div class="form-group repayment-order-list">
                         <label for="repaymentOrderList">Repayment Order</label>
-                        <select id="repaymentOrderList" multiple size="4" name="repaymentOrderList">
-                            <option value="penalty">Penalty</option>
-                            <option value="fees">Fees</option>
-                            <option value="interest">Interest</option>
-                            <option value="principal">Principal</option>
+                        <?php
+                        $orderOptions = ['penalty', 'fees', 'interest', 'principal'];
+                        $repaymentOrder = !empty($loan['repayment_order_list']) ? explode(',', $loan['repayment_order_list']) : [];
+                        ?>
+
+                        <select id="repaymentOrderList" multiple name="repaymentOrderList[]">
+                            <?php foreach ($orderOptions as $opt): ?>
+                                <option value="<?= $opt ?>" <?= in_array($opt, $repaymentOrder) ? 'selected' : '' ?>>
+                                    <?= ucfirst($opt) ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="order-buttons">
@@ -176,7 +172,16 @@ require_once "../../../controllers/setup/loansetup/index.php";
                     </div>
                 </div>
                 <p class="note-text"><strong>Please note:</strong> If you change the above order, all Open loans will be updated with the new Repayment Order and Fee Order</p>
+
+                <div class="form-group" style="margin: 8px 0px;">
+                    <label>Interest Type</label>
+                    <div class="radio-group">
+                        <input type="radio" id="interestPercentage" name="interestType" value="percentage" checked>
+                        <label for="interestPercentage">I want Interest to be percentage % based</label>
+                    </div>
+                </div>
             </div>
+
 
             <div class="card">
                 <h2 class="section-heading">Fees:</h2>
@@ -193,14 +198,15 @@ require_once "../../../controllers/setup/loansetup/index.php";
                             <tr>
                                 <td>Advance Service Charges % of Due Principal Amount</td>
                                 <td>
-                                    <input type="text" class="fee-input" name="fee-input" placeholder="0">
+
+                                    <input type="text" class="fee-input" name="fee-input" value="<?= htmlspecialchars($loan['fee_input'] ?? 0) ?>" placeholder="0">
                                 </td>
                                 <td>Deductible Fee</td>
                             </tr>
                             <tr>
                                 <td>Processing Fee on MF Loan % of Due Principal Amount</td>
                                 <td>
-                                    <input type="text" class="fee-input" placeholder="0">
+                                    <input type="text" class="fee-input" value="<?= htmlspecialchars($loan['fee_input'] ?? 0) ?>" placeholder="0">
                                 </td>
                                 <td>Deductible Fee</td>
                             </tr>
@@ -216,21 +222,26 @@ require_once "../../../controllers/setup/loansetup/index.php";
                 </div>
                 <div class="form-group">
                     <label for="loanStatusDropdown">Loan Status</label>
+
                     <select id="loanStatusDropdown" name="loanStatus">
-                        <option value="open" selected>Open</option>
-                        <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="approved">Approved</option>
-                        <option value="rejected">Rejected</option>
+                        <?php
+                        foreach (['open', 'pending', 'processing', 'approved', 'rejected'] as $status):
+                            $selected = ($loan['loan_status'] ?? '') === $status ? 'selected' : '';
+                        ?>
+                            <option value="<?= $status ?>" <?= $selected ?>>
+                                <?= ucfirst($status) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
 
             <div class="button-group">
-                <button class="btn primary-btn" type="submit">Submit</button>
-                <button class="btn secondary-btn">Cancel</button>
+                <button class="btn primary-btn" type="submit">Update</button>
+                <a class="btn secondary-btn" href="">Cancel</a>
             </div>
         </form>
+
 
 
 
@@ -238,8 +249,8 @@ require_once "../../../controllers/setup/loansetup/index.php";
     </div>
 
 
-    
-  
+
+
 
 
 
