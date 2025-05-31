@@ -1,0 +1,394 @@
+
+:root {
+    --heading-color: #1E3A8A;
+    --highlight-color: #1E3A8A;
+    --cta-background-color: #10B981;
+    --card-background-color: #F1F5F9;
+    --text-color: #1E1E1E;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 800px;
+}
+
+.main-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+.card {
+    background-color: var(--card-background-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.section-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--highlight-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.description-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.description-text .highlight {
+    font-weight: bold;
+    color: var(--highlight-color);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccd0d3;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; 
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--highlight-color);
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.placeholder-text {
+    color: #666;
+    font-style: italic;
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+    background-color: #e2e8f0;
+    border-radius: 5px;
+}
+
+.button-group {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 15px;
+}
+
+.primary-btn {
+    background-color: var(--cta-background-color);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.primary-btn:hover {
+    background-color: #0e9f73;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: #cccccc;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.secondary-btn:hover {
+    background-color: #b3b3b3;
+    transform: translateY(-2px);
+}
+
+/* Radio Button Styling (for Interest Type) */
+.radio-group { 
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--highlight-color);
+}
+
+.radio-group label {
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+/* For input fields with attached text ('per month') */
+.input-with-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-with-text input[type="text"] {
+    flex-grow: 1;
+    width: auto;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-with-text .unit-text {
+    color: var(--text-color);
+    padding: 10px 0;
+    margin-left: 10px;
+    font-size: 0.95em;
+    white-space: nowrap;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Checkbox list for Repayment Frequency  */
+.checkbox-list { /* This was .radio-list before */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Number input with increment/decrement buttons */
+.number-input-group {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid #ccd0d3;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.number-input-group input[type="number"] {
+    border: none;
+    text-align: center;
+    padding: 10px;
+    width: 60px;
+    font-size: 1em;
+    color: var(--text-color);
+    -moz-appearance: textfield;
+}
+
+
+.number-input-group input::-webkit-outer-spin-button,
+.number-input-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-input-group .number-btn {
+    background-color: #e2e8f0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--highlight-color);
+    transition: background-color 0.2s ease;
+}
+
+.number-input-group .number-btn:hover {
+    background-color: #d1d9e0;
+}
+
+.number-input-group .number-btn:active {
+    background-color: #c0c8d0;
+}
+
+.repayment-order-controls {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.repayment-order-list {
+    flex-grow: 1;
+}
+
+.repayment-order-list label {
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.repayment-order-list select {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #ccd0d3;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    color: var(--text-color);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.repayment-order-list select option:checked {
+    background-color: var(--highlight-color);
+    color: #ffffff;
+}
+
+.order-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.order-buttons .btn {
+    width: 80px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.note-text {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 25px;
+    padding: 10px;
+    background-color: #fffbe6;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+}
+
+.note-text strong {
+    color: var(--highlight-color);
+}
+
+.fees-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.fees-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.fees-table-container th,
+.fees-table-container td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.fees-table-container th {
+    background-color: var(--card-background-color);
+    font-weight: 600;
+    color: var(--highlight-color);
+    white-space: nowrap;
+}
+
+.fees-table-container tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.fees-table-container .fee-input {
+    width: 100px;
+    padding: 8px 10px;
+    border: 1px solid #ccd0d3;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em;
+    color: var(--text-color);
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.fees-table-container .fee-input:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+.info-box {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.info-box .highlight {
+    font-weight: bold;
+    color: var(--highlight-color);
+}
