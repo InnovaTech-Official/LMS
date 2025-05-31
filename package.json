@@ -1,0 +1,20 @@
+{
+  "name": "loan_management",
+  "version": "1.0.0",
+  "description": "Loan Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-postgres": "node scripts/install-postgres.js"
+  },
+  "dependencies": {
+    "flutter": "^0.0.5",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
